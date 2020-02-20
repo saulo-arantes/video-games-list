@@ -18,9 +18,9 @@ class GameCardTitle extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
-          end: Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
-          colors: [Colors.transparent, Colors.white], // whitish to gray
-          tileMode: TileMode.repeated, // repeats the gradient over the canvas
+          end: Alignment.bottomCenter,
+          colors: [Colors.transparent, Colors.white],
+          tileMode: TileMode.repeated,
         ),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10.0),
@@ -31,23 +31,34 @@ class GameCardTitle extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              GestureDetector(
-                child: Text(game.name, style: header3WithshadowStyle),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (_) => GameCardDialog(game: game),
-                    barrierDismissible: true
-                  );
-                },
-              ),
+          Container(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    
+                    GestureDetector(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.75,
+                        child: Text(game.name, style: header3WithshadowStyle, overflow: TextOverflow.ellipsis),
+                      ),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => GameCardDialog(game: game),
+                          barrierDismissible: true
+                        );
+                      },
+                    ),
+                  ],
+                ),
 
-              GameCardTitlePlatforms(platforms: game.parentPlatforms),
-            ],
+                GameCardTitlePlatforms(platforms: game.parentPlatforms),
+              ],
+            ),
           ),
 
           Padding(

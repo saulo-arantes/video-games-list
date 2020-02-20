@@ -38,6 +38,15 @@ class _HomePageState extends State<HomePage> {
           "Popular games for you",
           style: header1Style,
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            onPressed: null,
+          )
+        ],
         bottom: AppBar(
           title: const Text("Based on player ratings and release date"),
           backgroundColor: Colors.black,
