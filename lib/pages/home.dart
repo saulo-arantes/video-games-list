@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
     games = Games();
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent == scrollController.offset) {
-        print('lkasnlkasjaksljfklasjfakjshfkahsgfasgfjahgfasfgasjfg');
         pagination++;
         games.loadMore(
           pagination: pagination
@@ -49,7 +48,6 @@ class _HomePageState extends State<HomePage> {
       body: StreamBuilder(
         stream: games.stream,
         builder: (BuildContext _context, AsyncSnapshot _snapshot) {
-          print(_snapshot.error);
           if (!_snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(

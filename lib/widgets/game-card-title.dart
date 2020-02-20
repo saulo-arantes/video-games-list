@@ -10,6 +10,7 @@ class GameCardTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(game.rating);
     return Container(
       padding: gameCardTitlePadding,
       width: double.infinity,
@@ -20,15 +21,30 @@ class GameCardTitle extends StatelessWidget {
           bottomRight: Radius.circular(10.0)
         ),
       ),
-      child: Column(
+      child: Row(
         mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(game.name, style: header3Style),
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(game.name, style: header3Style),
 
-          GameCardTitlePlatforms(platforms: game.parentPlatforms),
+              GameCardTitlePlatforms(platforms: game.parentPlatforms),
+            ],
+          ),
+
+          Padding(
+            padding: EdgeInsets.only(right: 15.0),
+            child: Icon(
+              Icons.favorite_border,
+              color: Colors.red.shade800,
+              size: 30.0,
+            ),
+          )
         ],
-      ),
+      )
     );
   }
 }
