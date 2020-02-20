@@ -59,7 +59,10 @@ class _HomePageState extends State<HomePage> {
           }
 
           return RefreshIndicator(
-            onRefresh: games.refresh,
+            onRefresh: () {
+              pagination = 1;
+              return games.refresh();
+            },
             child: ListView.separated(
               controller: scrollController,
               separatorBuilder: (context, index) => Divider(),
@@ -75,7 +78,13 @@ class _HomePageState extends State<HomePage> {
                 } else {
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 32.0),
-                    child: Center(child: Text('Nothing more to load!')),
+                    child: Center(
+                      child: MaterialButton(
+                        child: Text('Search for more games', style: defaultTextStyle,),
+                        color: Colors.grey.shade800,
+                        onPressed: () {},
+                      )
+                    ),
                   );
                 }
               }
