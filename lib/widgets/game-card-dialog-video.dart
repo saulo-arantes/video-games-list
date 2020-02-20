@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class GameCardDialogVideo extends StatefulWidget {
+  final String url;
+
+  GameCardDialogVideo({this.url});
+
   @override
   _GameCardDialogVideoState createState() => _GameCardDialogVideoState();
 }
@@ -13,7 +17,7 @@ class _GameCardDialogVideoState extends State<GameCardDialogVideo> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(
-        "https://media.rawg.io/media/stories/2d5/2d55ab47f53118f4884c140e113b41cb.mp4")
+        widget.url)
       ..initialize().then((_) {
         setState(() {});
       });

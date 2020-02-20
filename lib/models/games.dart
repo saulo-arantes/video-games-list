@@ -2,30 +2,48 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 
-_indexGames(index) {
-  final String url = "https://api.rawg.io/api/games?ordering=-rating,-released&page=$index&page_size=3";
+Future<List<Map>> _indexGames(page) {
+  final int pageSize = 10;
+  final String url = "https://api.rawg.io/api/games?ordering=-rating,-released&page=$page&page_size=$pageSize";
+  print(url);
 
   return Future.delayed(Duration(seconds: 1), () async {
     final Response response = await Dio().get(url);
 
-    return response.data["results"];
+    return List<Map>.generate(pageSize, (int index) {
+      return {
+        "name": response.data["results"][index]["name"],
+        "slug": response.data["results"][index]["slug"],
+        "description": response.data["results"][index]["description"],
+        "released": response.data["results"][index]["released"],
+        "backgroundImage": response.data["results"][index]["background_image"],
+        "clip": response.data["results"][index]["clip"],
+        "website": response.data["results"][index]["website"],
+        "rating": response.data["results"][index]["rating"],
+        "parentPlatforms": response.data["results"][index]["parent_platforms"],
+        "stores": response.data["results"][index]["stores"],
+        "publishers": response.data["results"][index]["publishers"],
+      };
+    });
   });
 }
 
 class Game {
   final String name;
+  final String slug;
   final String description;
   final String released;
   final String backgroundImage;
   final clip;
   final String website;
-  final String rating;
+  final double rating;
   final parentPlatforms;
   final stores;
   final publishers;
   
   Game({
     this.name,
+    this.slug,
     this.description,
     this.released,
     this.backgroundImage,
@@ -40,6 +58,7 @@ class Game {
   factory Game.fromServerMap(data) {
     return Game(
       name: data["name"],
+      slug: data["slug"],
       description: data["description"],
       released: data["released"],
       backgroundImage: data["backgroundImage"],
@@ -64,10 +83,10 @@ class Games {
     _data = List<Map>();
     _controller = StreamController<List<Map>>.broadcast();
     _isLoading = false;
-    stream = _controller.stream.map((gamesData) {
+    stream = _controller.stream.map((List<Map> gamesData) {
       return gamesData.map((Map gameData) {
         return Game.fromServerMap(gameData);
-      });
+      }).toList();
     });
     hasMore = true;
 
@@ -78,7 +97,7 @@ class Games {
     return loadMore(clearCacheData: true);
   }
 
-  Future<void> loadMore({bool clearCacheData = false}) {
+  Future<void> loadMore({bool clearCacheData = false, int pagination = 1}) {
     if (clearCacheData) {
       _data = List<Map>();
       hasMore = true;
@@ -90,22 +109,9 @@ class Games {
 
     _isLoading = true;
 
-    return _indexGames(1).then((gamesData) {
+    return _indexGames(pagination).then((gamesData) {
       _isLoading = false;
-      gamesData.forEach((game) {
-        _data.add({
-          "name": game["name"],
-          "description": "",
-          "released": game["released"],
-          "backgroundImage": game["background_image"],
-          "clip": game["clip"],
-          "website": game["website"],
-          "rating": game["rating"],
-          "parentPlatforms": game["parent_platforms"],
-          "stores": game["stores"],
-          "publishers": game["publishers"],
-        });
-      });
+      _data.addAll(gamesData);
       hasMore = gamesData.length != null ? true : false;
       _controller.add(_data);
     });

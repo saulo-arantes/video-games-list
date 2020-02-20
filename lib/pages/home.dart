@@ -3,6 +3,8 @@ import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-card.dart';
 
+import '../widgets/game-card.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -12,13 +14,17 @@ class _HomePageState extends State<HomePage> {
   final scrollController = ScrollController();
 
   Games games;
+  int pagination = 1;
 
   @override
   void initState() {
     games = Games();
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent == scrollController.offset) {
-        games.loadMore();
+        pagination++;
+        games.loadMore(
+          pagination: pagination
+        );
       }
     });
     super.initState();
@@ -43,6 +49,7 @@ class _HomePageState extends State<HomePage> {
         child: StreamBuilder(
           stream: games.stream,
           builder: (BuildContext _context, AsyncSnapshot _snapshot) {
+            print(_snapshot.error);
             if (!_snapshot.hasData) {
               return Center(
                 child: CircularProgressIndicator(
@@ -57,8 +64,9 @@ class _HomePageState extends State<HomePage> {
                 controller: scrollController,
                 itemBuilder: (BuildContext _context, int index) {
                   if (index < _snapshot.data.length) {
-                    return GameCard();
-                  } else if(games.hasMore){
+                    print(_snapshot.data[index]);
+                    return GameCard(game: _snapshot.data[index]);
+                  } else if (games.hasMore) {
                     return Padding(
                       padding: EdgeInsets.symmetric(vertical: 32.0),
                       child: Center(child: CircularProgressIndicator()),
@@ -66,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                   } else {
                     return Padding(
                       padding: EdgeInsets.symmetric(vertical: 32.0),
-                      child: Center(child: Text('nothing more to load!')),
+                      child: Center(child: Text('Nothing more to load!')),
                     );
                   }
                 },

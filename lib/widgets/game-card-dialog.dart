@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-card-dialog-video.dart';
 
 class GameCardDialog extends StatefulWidget {
+  final Game game;
+
+  GameCardDialog({this.game});
+
   @override
   _GameCardDialogState createState() => _GameCardDialogState();
 }
@@ -10,6 +15,7 @@ class GameCardDialog extends StatefulWidget {
 class _GameCardDialogState extends State<GameCardDialog> {
   @override
   Widget build(BuildContext context) {
+    print(widget.game.publishers);
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -35,13 +41,13 @@ class _GameCardDialogState extends State<GameCardDialog> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text("Sekiro: Shadows Die Twice", style: header2Style),
-                  Text("Activison | 2019-03-22", style: defaultTextStyleBold),
+                  Text(widget.game.name, style: header2Style),
+                  Text("Activison | ${widget.game.released}", style: defaultTextStyleBold),
                 ],
               ),
             ),
 
-            GameCardDialogVideo(),
+            GameCardDialogVideo(url: widget.game.clip['clip']),
 
             Expanded(
               flex: 1,

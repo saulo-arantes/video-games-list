@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:video_games_list/utils/consts.dart';
 
 class GameCardTitle extends StatelessWidget {
+  final String title;
+
+  GameCardTitle({this.title});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +22,7 @@ class GameCardTitle extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Sekiro: Shadows Die Twice", style: header3Style)
+          Text(title, style: header3Style)
         ],
       ),
     );

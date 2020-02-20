@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-card-dialog.dart';
 import 'package:video_games_list/widgets/game-card-title.dart';
 
 class GameCard extends StatelessWidget {
+  final Game game;
+
+  GameCard({this.game});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -15,7 +20,7 @@ class GameCard extends StatelessWidget {
           color: Colors.grey.shade800,
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           image: DecorationImage(
-            image: NetworkImage("https://media.rawg.io/media/games/b1c/b1c27510817af1ad7d23494e07822777.jpg"),
+            image: NetworkImage(game.backgroundImage),
             fit: BoxFit.cover
           )
         ),
@@ -24,14 +29,14 @@ class GameCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            GameCardTitle()
+            GameCardTitle(title: game.name)
           ],
         ),
       ),
       onTap: () {
         showDialog(
           context: context,
-          builder: (_) => GameCardDialog(),
+          builder: (_) => GameCardDialog(game: game),
           barrierDismissible: true
         );
       },
