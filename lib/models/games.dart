@@ -14,7 +14,6 @@ Future<List<Map>> _indexGames(page) {
       return {
         "name": response.data["results"][index]["name"],
         "slug": response.data["results"][index]["slug"],
-        "description": response.data["results"][index]["description"],
         "released": response.data["results"][index]["released"],
         "backgroundImage": response.data["results"][index]["background_image"],
         "clip": response.data["results"][index]["clip"],
@@ -22,7 +21,6 @@ Future<List<Map>> _indexGames(page) {
         "rating": response.data["results"][index]["rating"],
         "parentPlatforms": response.data["results"][index]["parent_platforms"],
         "stores": response.data["results"][index]["stores"],
-        "publishers": response.data["results"][index]["publishers"],
       };
     });
   });
@@ -31,7 +29,6 @@ Future<List<Map>> _indexGames(page) {
 class Game {
   final String name;
   final String slug;
-  final String description;
   final String released;
   final String backgroundImage;
   final clip;
@@ -39,12 +36,10 @@ class Game {
   final double rating;
   final parentPlatforms;
   final stores;
-  final publishers;
   
   Game({
     this.name,
     this.slug,
-    this.description,
     this.released,
     this.backgroundImage,
     this.clip,
@@ -52,14 +47,12 @@ class Game {
     this.rating,
     this.parentPlatforms,
     this.stores,
-    this.publishers,
   });
 
   factory Game.fromServerMap(data) {
     return Game(
       name: data["name"],
       slug: data["slug"],
-      description: data["description"],
       released: data["released"],
       backgroundImage: data["backgroundImage"],
       clip: data["clip"],
@@ -67,7 +60,6 @@ class Game {
       rating: data["rating"],
       parentPlatforms: data["parentPlatforms"],
       stores: data["stores"],
-      publishers: data["publishers"]
     );
   }
 }

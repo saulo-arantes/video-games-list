@@ -15,7 +15,6 @@ class GameCardDialog extends StatefulWidget {
 class _GameCardDialogState extends State<GameCardDialog> {
   @override
   Widget build(BuildContext context) {
-    print(widget.game.publishers);
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -41,7 +40,7 @@ class _GameCardDialogState extends State<GameCardDialog> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text(widget.game.name, style: header2Style),
+                  Text(widget.game.name, style: header2Style, textAlign: TextAlign.center,),
                   Text("Activison | ${widget.game.released}", style: defaultTextStyleBold),
                 ],
               ),
