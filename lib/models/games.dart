@@ -26,6 +26,13 @@ Future<List<Map>> _indexGames(page) {
   });
 }
 
+Future<Map> getGame({String slug}) async {
+  final String url = "https://api.rawg.io/api/games/$slug";
+  final Response response = await Dio().get(url);
+
+  return response.data;
+}
+
 class Game {
   final String name;
   final String slug;

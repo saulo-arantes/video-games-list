@@ -4,14 +4,20 @@ import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-card-dialog.dart';
 import 'package:video_games_list/widgets/game-card-title-platforms.dart';
 
-class GameCardTitle extends StatelessWidget {
+class GameCardTitle extends StatefulWidget {
   final Game game;
 
   GameCardTitle({this.game});
 
   @override
+  _GameCardTitleState createState() => _GameCardTitleState();
+}
+
+class _GameCardTitleState extends State<GameCardTitle> {
+  bool loading = false;
+
+  @override
   Widget build(BuildContext context) {
-    print(game.rating);
     return Container(
       padding: gameCardTitlePadding,
       width: double.infinity,
@@ -39,16 +45,17 @@ class GameCardTitle extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    
                     GestureDetector(
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.75,
-                        child: Text(game.name, style: header3WithshadowStyle, overflow: TextOverflow.ellipsis),
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: Text(widget.game.name, style: header3WithshadowStyle, overflow: TextOverflow.ellipsis),
                       ),
-                      onTap: () {
+                      onTap: () async {
+                        final gameJson = await getGame(slug: widget.game.slug);
+
                         showDialog(
                           context: context,
-                          builder: (_) => GameCardDialog(game: game),
+                          builder: (_) => GameCardDialog(game: gameJson),
                           barrierDismissible: true
                         );
                       },
@@ -56,7 +63,7 @@ class GameCardTitle extends StatelessWidget {
                   ],
                 ),
 
-                GameCardTitlePlatforms(platforms: game.parentPlatforms),
+                GameCardTitlePlatforms(platforms: widget.game.parentPlatforms),
               ],
             ),
           ),

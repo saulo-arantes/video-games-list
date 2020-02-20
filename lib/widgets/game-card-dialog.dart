@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-card-dialog-video.dart';
 
 class GameCardDialog extends StatefulWidget {
-  final Game game;
+  final Map game;
 
   GameCardDialog({this.game});
 
@@ -20,7 +19,6 @@ class _GameCardDialogState extends State<GameCardDialog> {
       child: Container(
         width: double.infinity,
         height: 500.0,
-        margin: gameCardMargin,
         decoration: BoxDecoration(
           color: Colors.grey.shade900,
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -40,13 +38,13 @@ class _GameCardDialogState extends State<GameCardDialog> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text(widget.game.name, style: header2Style, textAlign: TextAlign.center,),
-                  Text("Activison | ${widget.game.released}", style: defaultTextStyleBold),
+                  Text(widget.game["name"], style: header2Style, textAlign: TextAlign.center,),
+                  Text("Activison | ${widget.game["released"]}", style: defaultTextStyleBold),
                 ],
               ),
             ),
 
-            GameCardDialogVideo(url: widget.game.clip['clip']),
+            GameCardDialogVideo(url: widget.game["clip"]["clip"]),
 
             Expanded(
               flex: 1,
