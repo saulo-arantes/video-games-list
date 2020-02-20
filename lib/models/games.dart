@@ -104,7 +104,7 @@ class Games {
     return _indexGames(pagination).then((gamesData) {
       _isLoading = false;
       _data.addAll(gamesData);
-      hasMore = pagination <= 5;
+      hasMore = pagination <= 3;
       _controller.add(_data);
     });
   }
