@@ -16,7 +16,12 @@ class GameCardTitle extends StatelessWidget {
       padding: gameCardTitlePadding,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.grey.shade900,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
+          colors: [Colors.transparent, Colors.white], // whitish to gray
+          tileMode: TileMode.repeated, // repeats the gradient over the canvas
+        ),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10.0),
           bottomRight: Radius.circular(10.0)
@@ -31,7 +36,7 @@ class GameCardTitle extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               GestureDetector(
-                child: Text(game.name, style: header3Style),
+                child: Text(game.name, style: header3WithshadowStyle),
                 onTap: () {
                   showDialog(
                     context: context,

@@ -18,6 +18,19 @@ final header3Style = TextStyle(
   fontSize: 20.0
 );
 
+final header3WithshadowStyle = TextStyle(
+  color: Colors.white,
+  fontWeight: FontWeight.w700,
+  fontSize: 20.0,
+  shadows: <Shadow>[
+    Shadow(
+      blurRadius: 10.0,
+      color: Colors.black,
+      offset: Offset(3.0, 3.0)
+    )
+  ]
+);
+
 final defaultTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 16.0
