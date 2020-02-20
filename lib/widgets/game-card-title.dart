@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
+import 'package:video_games_list/widgets/game-card-title-platforms.dart';
 
 class GameCardTitle extends StatelessWidget {
-  final String title;
+  final Game game;
 
-  GameCardTitle({this.title});
+  GameCardTitle({this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,9 @@ class GameCardTitle extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(title, style: header3Style)
+          Text(game.name, style: header3Style),
+
+          GameCardTitlePlatforms(platforms: game.parentPlatforms),
         ],
       ),
     );

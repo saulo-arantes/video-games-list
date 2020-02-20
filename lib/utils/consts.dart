@@ -51,3 +51,12 @@ final gameCardTitlePadding = EdgeInsets.only(
 final circularBorder = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(10.0)),
 );
+
+final Map platformsMap = {
+  'mac': 'assets/icons/apple.png',
+  'linux': 'assets/icons/linux.png',
+  'nintendo': 'assets/icons/nintendo-switch.png',
+  'playstation': 'assets/icons/ps.png',
+  'pc': 'assets/icons/windows.png',
+  'xbox': 'assets/icons/xbox.png',
+};

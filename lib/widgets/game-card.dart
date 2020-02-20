@@ -29,7 +29,7 @@ class GameCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            GameCardTitle(title: game.name)
+            GameCardTitle(game: game)
           ],
         ),
       ),
