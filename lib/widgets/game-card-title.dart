@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
+import 'package:video_games_list/widgets/game-card-dialog.dart';
 import 'package:video_games_list/widgets/game-card-title-platforms.dart';
 
 class GameCardTitle extends StatelessWidget {
@@ -29,7 +30,16 @@ class GameCardTitle extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(game.name, style: header3Style),
+              GestureDetector(
+                child: Text(game.name, style: header3Style),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => GameCardDialog(game: game),
+                    barrierDismissible: true
+                  );
+                },
+              ),
 
               GameCardTitlePlatforms(platforms: game.parentPlatforms),
             ],
