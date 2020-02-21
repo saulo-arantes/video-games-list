@@ -3,8 +3,9 @@ import 'package:video_player/video_player.dart';
 
 class GameCardDialogVideo extends StatefulWidget {
   final String url;
+  final String backgroundImage;
 
-  GameCardDialogVideo({this.url});
+  GameCardDialogVideo({this.url, this.backgroundImage});
 
   @override
   _GameCardDialogVideoState createState() => _GameCardDialogVideoState();
@@ -21,6 +22,8 @@ class _GameCardDialogVideoState extends State<GameCardDialogVideo> {
       ..initialize().then((_) {
         setState(() {});
       });
+
+    _controller.setLooping(true);
   }
 
   @override

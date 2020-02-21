@@ -51,11 +51,9 @@ class _GameCardTitleState extends State<GameCardTitle> {
                         child: Text(widget.game.name, style: header3WithshadowStyle, overflow: TextOverflow.ellipsis),
                       ),
                       onTap: () async {
-                        final gameJson = await getGame(slug: widget.game.slug);
-
                         showDialog(
                           context: context,
-                          builder: (_) => GameCardDialog(game: gameJson),
+                          builder: (_) => GameCardDialog(game: widget.game),
                           barrierDismissible: true
                         );
                       },

@@ -8,7 +8,6 @@ class GameCardTitlePlatforms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(platforms);
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
