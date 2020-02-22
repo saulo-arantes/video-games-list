@@ -126,7 +126,8 @@ class _GameCardState extends State<GameCard> {
                             context,
                             MaterialPageRoute(builder: (context) => GameDetailsPage(
                               title: widget.game.name,
-                              slug: widget.game.slug
+                              slug: widget.game.slug,
+                              screenshots: widget.game.screenshots,
                             )),
                           );
                         },
