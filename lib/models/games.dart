@@ -21,6 +21,7 @@ Future<List<Map>> _indexGames(page) {
         "rating": response.data["results"][index]["rating"],
         "parentPlatforms": response.data["results"][index]["parent_platforms"],
         "stores": response.data["results"][index]["stores"],
+        "genres": response.data["results"][index]["genres"],
       };
     });
   });
@@ -43,6 +44,7 @@ class Game {
   final double rating;
   final parentPlatforms;
   final stores;
+  final List genres;
   
   Game({
     this.name,
@@ -54,6 +56,7 @@ class Game {
     this.rating,
     this.parentPlatforms,
     this.stores,
+    this.genres
   });
 
   factory Game.fromServerMap(data) {
@@ -67,6 +70,7 @@ class Game {
       rating: data["rating"],
       parentPlatforms: data["parentPlatforms"],
       stores: data["stores"],
+      genres: data["genres"],
     );
   }
 }

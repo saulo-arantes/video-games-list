@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
-import 'package:video_games_list/widgets/game-card-dialog.dart';
 import 'package:video_games_list/widgets/game-card-title-platforms.dart';
 
 class GameCardTitle extends StatefulWidget {
@@ -50,13 +49,7 @@ class _GameCardTitleState extends State<GameCardTitle> {
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: Text(widget.game.name, style: header3WithshadowStyle, overflow: TextOverflow.ellipsis),
                       ),
-                      onTap: () async {
-                        showDialog(
-                          context: context,
-                          builder: (_) => GameCardDialog(game: widget.game),
-                          barrierDismissible: true
-                        );
-                      },
+                      onTap: () async {},
                     ),
                   ],
                 ),

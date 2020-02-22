@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class GameCardDialogVideo extends StatefulWidget {
+class GameCardVideo extends StatefulWidget {
   final String url;
-  final String backgroundImage;
 
-  GameCardDialogVideo({this.url, this.backgroundImage});
+  GameCardVideo({this.url});
 
   @override
-  _GameCardDialogVideoState createState() => _GameCardDialogVideoState();
+  _GameCardVideoState createState() => _GameCardVideoState();
 }
 
-class _GameCardDialogVideoState extends State<GameCardDialogVideo> {
+class _GameCardVideoState extends State<GameCardVideo> {
   VideoPlayerController _controller;
 
   @override
@@ -29,7 +28,7 @@ class _GameCardDialogVideoState extends State<GameCardDialogVideo> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.0,
+      height: 170.0,
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: <Widget>[
