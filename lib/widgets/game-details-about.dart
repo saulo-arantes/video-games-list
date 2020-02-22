@@ -44,9 +44,19 @@ class _GameDetailsAboultState extends State<GameDetailsAboult> {
           ),
 
           MaterialButton(
-            child: Text(
-              trim ? "Show more" : "Show less",
-              style: defaultTextStyleBold,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Icon(
+                  trim ? Icons.expand_more : Icons.expand_less,
+                  color: Colors.white,
+                ),
+                Text(
+                  trim ? "Show more" : "Show less",
+                  style: defaultTextStyleBold,
+                )
+              ],
             ),
             onPressed: () {
               setState(() {
