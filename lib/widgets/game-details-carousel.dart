@@ -13,7 +13,7 @@ class GameDetailsCarousel extends StatelessWidget {
       child: CarouselSlider(
         height: 300.0,
         autoPlay: true,
-        autoPlayInterval: Duration(seconds: 5),
+        autoPlayInterval: Duration(seconds: 3),
         items: screenshots.map((screenshot) {
           return Builder(
             builder: (BuildContext _context) {

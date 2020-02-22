@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
+import 'package:video_games_list/widgets/game-details-about.dart';
 import 'package:video_games_list/widgets/game-details-carousel.dart';
 import 'package:video_games_list/widgets/game-details-released-platforms.dart';
 
@@ -66,6 +67,8 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                     GameDetailsReleasedPlatforms(game: game),
 
                     GameDetailsCarousel(screenshots: widget.screenshots),
+
+                    GameDetailsAboult(about: game["description_raw"])
                   ],
                 ),
               )
