@@ -12,6 +12,7 @@ class GameCardTitlePlatforms extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: platformsWidgets(),
       ),
     );

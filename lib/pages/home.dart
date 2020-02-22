@@ -101,4 +101,16 @@ class _HomePageState extends State<HomePage> {
       )
     );
   }
+
+  @override
+  void dispose() {
+    print("home dispose");
+    super.dispose();
+  }
+
+  @override
+  void deactivate() {
+    print("home deactivate");
+    super.deactivate();
+  }
 }
