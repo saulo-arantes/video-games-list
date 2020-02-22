@@ -3,7 +3,6 @@ import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-card-title.dart';
 import 'package:video_games_list/widgets/game-card-video.dart';
-import 'package:video_player/video_player.dart';
 
 class GameCard extends StatefulWidget {
   final Game game;
@@ -16,7 +15,6 @@ class GameCard extends StatefulWidget {
 
 class _GameCardState extends State<GameCard> {
   final double cardHeight = 350.0;
-  VideoPlayerController _controller;
   
   int state = 0;
 
@@ -92,8 +90,16 @@ class _GameCardState extends State<GameCard> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text(widget.game.name, style: header2Style, textAlign: TextAlign.center),
-                      Text("Released at: " + (widget.game.released ?? "-"), style: defaultTextStyleBold),
+                      Text(
+                        widget.game.name,
+                        style: header2Style,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis
+                      ),
+                      Text(
+                        "Released at: " + (widget.game.released ?? "-"), 
+                        style: defaultTextStyleBold
+                      ),
                       Text(
                         widget.game.genres.map((genre) {
                           return genre["name"];
