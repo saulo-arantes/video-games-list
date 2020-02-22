@@ -14,6 +14,7 @@ class GameCardTitle extends StatefulWidget {
 
 class _GameCardTitleState extends State<GameCardTitle> {
   bool loading = false;
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +60,19 @@ class _GameCardTitleState extends State<GameCardTitle> {
             ),
           ),
 
-          Padding(
+          Container(
             padding: EdgeInsets.only(right: 15.0),
-            child: Icon(
-              Icons.favorite_border,
-              color: Colors.red.shade800,
-              size: 30.0,
+            child: GestureDetector(
+              child: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: Colors.red.shade800,
+                size: 30.0,
+              ),
+              onTap: () {
+                setState(() {
+                  isFavorite = !isFavorite;
+                });
+              },
             ),
           )
         ],
