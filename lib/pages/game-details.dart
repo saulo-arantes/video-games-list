@@ -3,6 +3,7 @@ import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-details-about.dart';
 import 'package:video_games_list/widgets/game-details-carousel.dart';
+import 'package:video_games_list/widgets/game-details-platforms.dart';
 import 'package:video_games_list/widgets/game-details-released-platforms.dart';
 
 class GameDetailsPage extends StatefulWidget {
@@ -68,7 +69,9 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
 
                     GameDetailsCarousel(screenshots: widget.screenshots),
 
-                    GameDetailsAboult(about: game["description_raw"])
+                    GameDetailsAboult(about: game["description_raw"]),
+
+                    GameDetailsPlatforms(platforms: game["platforms"])
                   ],
                 ),
               )
