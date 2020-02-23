@@ -3,8 +3,8 @@ import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/pages/game-details.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/utils/dates.dart';
-import 'package:video_games_list/widgets/game-card-title.dart';
-import 'package:video_games_list/widgets/game-card-video.dart';
+import 'package:video_games_list/widgets/game-card/game-card-title.dart';
+import 'package:video_games_list/widgets/game-card/game-card-video.dart';
 
 class GameCard extends StatefulWidget {
   final Game game;

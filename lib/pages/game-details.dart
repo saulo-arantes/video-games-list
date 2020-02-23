@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
-import 'package:video_games_list/widgets/game-details-about.dart';
-import 'package:video_games_list/widgets/game-details-carousel.dart';
-import 'package:video_games_list/widgets/game-details-platforms.dart';
-import 'package:video_games_list/widgets/game-details-released-platforms.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-about.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-carousel.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-platforms.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-released-platforms.dart';
 
 class GameDetailsPage extends StatefulWidget {
   final String title;
@@ -71,7 +71,9 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
 
                     GameDetailsAboult(about: game["description_raw"]),
 
-                    GameDetailsPlatforms(platforms: game["platforms"])
+                    GameDetailsPlatforms(platforms: game["platforms"]),
+
+                    
                   ],
                 ),
               )

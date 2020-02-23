@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/utils/dates.dart';
-import 'package:video_games_list/widgets/game-card-title-platforms.dart';
+import 'package:video_games_list/widgets/game-card/game-card-title-platforms.dart';
 
 class GameDetailsReleasedPlatforms extends StatelessWidget {
   final game;
