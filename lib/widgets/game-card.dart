@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/pages/game-details.dart';
 import 'package:video_games_list/utils/consts.dart';
+import 'package:video_games_list/utils/dates.dart';
 import 'package:video_games_list/widgets/game-card-title.dart';
 import 'package:video_games_list/widgets/game-card-video.dart';
 
@@ -98,7 +99,7 @@ class _GameCardState extends State<GameCard> {
                         overflow: TextOverflow.ellipsis
                       ),
                       Text(
-                        "Released at: " + (widget.game.released ?? "-"), 
+                        "Released at: " + (Dates.convert(date: widget.game.released) ?? "-"), 
                         style: defaultTextStyleBold
                       ),
                       Text(
@@ -124,11 +125,13 @@ class _GameCardState extends State<GameCard> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => GameDetailsPage(
-                              title: widget.game.name,
-                              slug: widget.game.slug,
-                              screenshots: widget.game.screenshots,
-                            )),
+                            MaterialPageRoute(
+                              builder: (context) => GameDetailsPage(
+                                title: widget.game.name,
+                                slug: widget.game.slug,
+                                screenshots: widget.game.screenshots,
+                              )
+                            ),
                           );
                         },
                       )
@@ -158,5 +161,15 @@ class _GameCardState extends State<GameCard> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
   }
 }

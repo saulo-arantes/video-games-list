@@ -5,13 +5,17 @@ class Dates {
     String date,
     String format
   }) {
-    List<String> splitedDate = date.split("-");
-    DateTime dateTime = new DateTime(
-      int.parse(splitedDate[0]),
-      int.parse(splitedDate[1]),
-      int.parse(splitedDate[2])
-    );
+    if (date.isNotEmpty) {
+      List<String> splitedDate = date.split("-");
+      DateTime dateTime = new DateTime(
+        int.parse(splitedDate[0]),
+        int.parse(splitedDate[1]),
+        int.parse(splitedDate[2])
+      );
 
-    return new DateFormat("MMMM dd, yyyy").format(dateTime);
+      return new DateFormat("MMMM dd, yyyy").format(dateTime);
+    }
+
+    return "";
   }
 }

@@ -70,7 +70,13 @@ class _GameCardVideoState extends State<GameCardVideo> {
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void deactivate() {
+    _controller.pause();
+    super.deactivate();
   }
 }
