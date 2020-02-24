@@ -4,7 +4,9 @@ import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-about.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-carousel.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-genres.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-metacritic.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-platforms.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-release-date.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-released-platforms.dart';
 
 class GameDetailsPage extends StatefulWidget {
@@ -20,6 +22,11 @@ class GameDetailsPage extends StatefulWidget {
 
 class _GameDetailsPageState extends State<GameDetailsPage> {
   bool isFavorite = false;
+  final EdgeInsets infoPadding = EdgeInsets.only(
+    left: 10.0,
+    right: 10.0,
+    bottom: 25.0
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +83,30 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              GameDetailsPlatforms(platforms: game["platforms"]),
-                              GameDetailsGenres(genres: game["genres"])
-                            ],
+                          Padding(
+                            padding: infoPadding,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GameDetailsPlatforms(platforms: game["platforms"]),
+                                GameDetailsGenres(genres: game["genres"])
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                            padding: infoPadding,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GameDetailsReleaseDate(releaseDate: game["released"]),
+                                GameDetailsMetacritic(metacritic: game["metacritic"])
+                              ],
+                            ),
                           )
                         ],
                       ),
