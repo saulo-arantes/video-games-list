@@ -3,6 +3,7 @@ import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-about.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-carousel.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-genres.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-platforms.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-released-platforms.dart';
 
@@ -71,9 +72,22 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
 
                     GameDetailsAboult(about: game["description_raw"]),
 
-                    GameDetailsPlatforms(platforms: game["platforms"]),
-
-                    
+                    Container(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              GameDetailsPlatforms(platforms: game["platforms"]),
+                              GameDetailsGenres(genres: game["genres"])
+                            ],
+                          )
+                        ],
+                      ),
+                    )
                   ],
                 ),
               )

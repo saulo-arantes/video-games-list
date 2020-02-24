@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:video_games_list/utils/consts.dart';
 
-class GameDetailsPlatforms extends StatelessWidget {
-  final platforms;
+class GameDetailsGenres extends StatelessWidget {
+  final genres;
 
-  GameDetailsPlatforms({this.platforms});
+  GameDetailsGenres({this.genres});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text("Platforms", style: header3Style),
+        Text("Genres", style: header3Style),
         Text(
-          formatedPlatforms(),
+          formatedGenres(),
           style: defaultTextStyle,
           textAlign: TextAlign.center,
         )
@@ -21,10 +21,10 @@ class GameDetailsPlatforms extends StatelessWidget {
     );
   }
 
-  String formatedPlatforms() {
-    if (platforms != null) {
-      return platforms.map((platform) {
-        return platform["platform"]["name"];
+  String formatedGenres() {
+    if (genres != null) {
+      return genres.map((genre) {
+        return genre["name"];
       })
       .toString()
       .replaceAll("(", "")
