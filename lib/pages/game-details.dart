@@ -3,9 +3,11 @@ import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-about.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-carousel.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-developers.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-genres.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-metacritic.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-platforms.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-publishers.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-release-date.dart';
 import 'package:video_games_list/widgets/game-details-page/game-details-released-platforms.dart';
 
@@ -105,6 +107,19 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                               children: <Widget>[
                                 GameDetailsReleaseDate(releaseDate: game["released"]),
                                 GameDetailsMetacritic(metacritic: game["metacritic"])
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                            padding: infoPadding,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                GameDetailsDevelopers(developers: game["developers"]),
+                                GameDetailsPublishers(publishers: game["publishers"])
                               ],
                             ),
                           )
