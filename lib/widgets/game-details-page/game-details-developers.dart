@@ -12,10 +12,13 @@ class GameDetailsDevelopers extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text("Developers", style: header3Style),
-        Text(
+        Container(
+          width: MediaQuery.of(context).size.width*0.4,
+          child: Text(
           formatedDevelopers(),
           style: defaultTextStyle,
           textAlign: TextAlign.center,
+        ),
         )
       ],
     );
@@ -29,7 +32,7 @@ class GameDetailsDevelopers extends StatelessWidget {
       .toString()
       .replaceAll("(", "")
       .replaceAll(")", "")
-      .replaceAll(", ", "\n");
+      .replaceAll(", ", ",\n");
     }
 
     return " ";

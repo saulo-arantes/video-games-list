@@ -12,7 +12,8 @@ class GameDetailsMetacritic extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text("Metascore", style: header3Style),
-        Container(
+        metacritic != null
+        ? Container(
           padding: EdgeInsets.all(5.0),
           decoration: BoxDecoration(
             border: Border.all(
@@ -28,6 +29,9 @@ class GameDetailsMetacritic extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
+        )
+        : Container(
+          child: Text("-", style: defaultTextStyle),
         )
       ],
     );
