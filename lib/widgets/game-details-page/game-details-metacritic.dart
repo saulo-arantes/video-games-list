@@ -14,25 +14,25 @@ class GameDetailsMetacritic extends StatelessWidget {
         Text("Metascore", style: header3Style),
         metacritic != null
         ? Container(
-          padding: EdgeInsets.all(5.0),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: metascoreColor()
+            padding: EdgeInsets.all(5.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: metascoreColor()
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(5.0))
             ),
-            borderRadius: BorderRadius.all(Radius.circular(5.0))
-          ),
-          child: Text(
-            metacritic.toString(),
-            style: TextStyle(
-              fontSize: 14.0,
-              color: metascoreColor()
+            child: Text(
+              metacritic.toString(),
+              style: TextStyle(
+                fontSize: 14.0,
+                color: metascoreColor()
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-        )
+          )
         : Container(
-          child: Text("-", style: defaultTextStyle),
-        )
+            child: Text("-", style: defaultTextStyle),
+          )
       ],
     );
   }
