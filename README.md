@@ -1,16 +1,11 @@
-# video_games_list
+# Video Game List
+Aplicativo criado para listar jogos mais populares e exibir informações dos mesmos. O aplicativo ainda está em desenvolvimento, mas já existe um escopo de funcionalidades que consiste em:
+- Exibir mais informações relevantes sobre cada jogo;
+- Criar mecanismo para buscas de jogos com filtros para listagens mais específicas;
+- Autenticação por usuário fazendo uso da integração com o Firebase;
+- Possibilidade de favoritar jogos e definir uma lista pessoal relacionada a cada usuário;
+- Deixar comentários e sugestões para cada jogo, além de poder enviar screenshots e curtos gameplays, sendo todos armazenados com o Storage do Firebase
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tecnologias
+O aplicativo está sendo desenvolvido todo em Flutter, um SDK/framework em Dart, desenvolvido pela Google para o desenvolvimento prático e ágil de aplicativos mobile de forma elegante e eficiente. Futuramente, haverá, também, integrações com outros serviços como Firebase.
+Toda a base de jogos e informações do mesmos provém de uma API aberta oferecida pelo site **RAWG** (https://rawg.io), sendo unicamente para consulta de dados e exibição das informações.
