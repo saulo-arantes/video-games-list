@@ -13,7 +13,7 @@ class GameDetailsDevelopers extends StatelessWidget {
       children: <Widget>[
         Text("Developers", style: header3Style),
         Container(
-          width: MediaQuery.of(context).size.width*0.4,
+          width: MediaQuery.of(context).size.width * 0.4,
           child: Text(
           formatedDevelopers(),
           style: defaultTextStyle,

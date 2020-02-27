@@ -13,10 +13,13 @@ class GameDetailsReleaseDate extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text("Release date", style: header3Style),
-        Text(
-          Dates.convert(date: releaseDate),
-          style: defaultTextStyle,
-          textAlign: TextAlign.center,
+        Container(
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: Text(
+            Dates.convert(date: releaseDate, format: "MMM dd, yyyy"),
+            style: defaultTextStyle,
+            textAlign: TextAlign.center,
+          ),
         )
       ],
     );

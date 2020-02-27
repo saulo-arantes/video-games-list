@@ -13,7 +13,7 @@ class Dates {
         int.parse(splitedDate[2])
       );
 
-      return new DateFormat("MMMM dd, yyyy").format(dateTime);
+      return new DateFormat(format ?? "MMMM dd, yyyy").format(dateTime);
     }
 
     return "";

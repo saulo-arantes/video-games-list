@@ -12,10 +12,13 @@ class GameDetailsPlatforms extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text("Platforms", style: header3Style),
-        Text(
-          formatedPlatforms(),
-          style: defaultTextStyle,
-          textAlign: TextAlign.center,
+        Container(
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: Text(
+            formatedPlatforms(),
+            style: defaultTextStyle,
+            textAlign: TextAlign.center,
+          ),
         )
       ],
     );
