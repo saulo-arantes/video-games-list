@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/pages/game-details.dart';
