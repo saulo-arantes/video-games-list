@@ -10,7 +10,6 @@ Future<List<Map>> _indexGames(page) {
   final String thirtyDaysPast = Dates.format(date: new DateTime.now().subtract(new Duration(days: 9)));
   final String url = "https://api.rawg.io/api/games?dates=$thirtyDaysPast,$today&platforms=18,1,7&page=$page&page_size=$pageSize";
   Response response;
-  print(url);
 
   try {
       return Future.delayed(Duration(seconds: 1), () async {
@@ -138,11 +137,9 @@ class Games {
     _isLoading = true;
 
     return _indexGames(pagination).then((gamesData) {
-      print(gamesData.length);
       _isLoading = false;
       _data.addAll(gamesData);
       hasMore = pagination <= 3 && gamesData.length >= paginationSize;
-      // hasMore = pagination <= 3;
       _controller.add(_data);
     });
   }

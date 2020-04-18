@@ -74,7 +74,6 @@ class _HomePageState extends State<HomePage> {
               separatorBuilder: (context, index) => Divider(),
               itemCount: _snapshot.data.length + 1,
               itemBuilder: (BuildContext _context, int index) {
-                print(games.hasMore);
                 if (index < _snapshot.data.length) {
                   return GameCard(game: _snapshot.data[index]);
                 } else if (games.hasMore) {
@@ -104,13 +103,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    print("home dispose");
     super.dispose();
   }
 
   @override
   void deactivate() {
-    print("home deactivate");
     super.deactivate();
   }
 }
