@@ -1,4 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+final Options dioOptionsRawg = Options(headers: {
+  'User-Agent': 'VGL <https://github.com/saulo-arantes/video-games-list>'
+});
 
 final int paginationSize = 10;
 

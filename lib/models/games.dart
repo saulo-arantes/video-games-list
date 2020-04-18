@@ -14,7 +14,7 @@ Future<List<Map>> _indexGames(page) {
   try {
       return Future.delayed(Duration(seconds: 1), () async {
       try {
-        response = await Dio().get(url);
+        response = await Dio().get(url, options: dioOptionsRawg);
       } on DioError {
         return new List<Map>();
       } on DioErrorType {
@@ -50,7 +50,7 @@ Future<List<Map>> _indexGames(page) {
 
 Future<Map> getGame({String slug}) async {
   final String url = "https://api.rawg.io/api/games/$slug";
-  final Response response = await Dio().get(url);
+  final Response response = await Dio().get(url, options: dioOptionsRawg);
 
   return response.data;
 }
