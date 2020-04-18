@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:video_games_list/models/games.dart';
+import 'package:video_games_list/pages/game-details.dart';
 import 'package:video_games_list/utils/consts.dart';
 
 class Search extends SearchDelegate<String> {
@@ -26,18 +27,6 @@ class Search extends SearchDelegate<String> {
         hintStyle: TextStyle(color: Colors.white54)
       ),
       textTheme: theme.textTheme.copyWith(
-        // body1: TextStyle(color: Colors.white),
-        // body2: TextStyle(color: Colors.white),
-        // button: TextStyle(color: Colors.white),
-        // caption: TextStyle(color: Colors.white),
-        // display1: TextStyle(color: Colors.white),
-        // display2: TextStyle(color: Colors.white),
-        // display3: TextStyle(color: Colors.white),
-        // display4: TextStyle(color: Colors.white),
-        // headline: TextStyle(color: Colors.white),
-        // overline: TextStyle(color: Colors.white),
-        // subhead: TextStyle(color: Colors.white),
-        // subtitle: TextStyle(color: Colors.white),
         title: TextStyle(color: Colors.white),
       )
     );
@@ -137,6 +126,18 @@ class Search extends SearchDelegate<String> {
                     Icons.gamepad,
                     color: Colors.white,
                   ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GameDetailsPage(
+                          title: _snapshot.data[index].name,
+                          slug: _snapshot.data[index].slug,
+                          screenshots: _snapshot.data[index].screenshots,
+                        )
+                      ),
+                    );
+                  },
                 );
               } else if (games.hasMore) {
                 return Padding(
