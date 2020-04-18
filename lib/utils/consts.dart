@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+final int paginationSize = 10;
+
 final header1Style = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.w700,

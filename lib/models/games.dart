@@ -1,31 +1,52 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:video_games_list/utils/consts.dart';
+import 'package:video_games_list/utils/dates.dart';
 
 Future<List<Map>> _indexGames(page) {
-  final int pageSize = 10;
-  final String url = "https://api.rawg.io/api/games?ordering=-rating,-released&page=$page&page_size=$pageSize";
+  final int pageSize = paginationSize;
+  final String today = Dates.format(date: new DateTime.now());
+  final String thirtyDaysPast = Dates.format(date: new DateTime.now().subtract(new Duration(days: 9)));
+  final String url = "https://api.rawg.io/api/games?dates=$thirtyDaysPast,$today&platforms=18,1,7&page=$page&page_size=$pageSize";
+  Response response;
   print(url);
 
-  return Future.delayed(Duration(seconds: 1), () async {
-    final Response response = await Dio().get(url);
+  try {
+      return Future.delayed(Duration(seconds: 1), () async {
+      try {
+        response = await Dio().get(url);
+      } on DioError {
+        return new List<Map>();
+      } on DioErrorType {
+        return new List<Map>();
+      }
 
-    return List<Map>.generate(pageSize, (int index) {
-      return {
-        "name": response.data["results"][index]["name"],
-        "slug": response.data["results"][index]["slug"],
-        "released": response.data["results"][index]["released"],
-        "backgroundImage": response.data["results"][index]["background_image"],
-        "clip": response.data["results"][index]["clip"],
-        "website": response.data["results"][index]["website"],
-        "rating": response.data["results"][index]["rating"],
-        "parentPlatforms": response.data["results"][index]["parent_platforms"],
-        "stores": response.data["results"][index]["stores"],
-        "genres": response.data["results"][index]["genres"],
-        "screenshots": response.data["results"][index]["short_screenshots"],
-      };
+      return List<Map>.generate(response.data["results"].length, (int index) {
+        return {
+          "name": response.data["results"][index]["name"],
+          "slug": response.data["results"][index]["slug"],
+          "released": response.data["results"][index]["released"],
+          "backgroundImage": response.data["results"][index]["background_image"],
+          "clip": response.data["results"][index]["clip"],
+          "website": response.data["results"][index]["website"],
+          "rating": response.data["results"][index]["rating"],
+          "parentPlatforms": response.data["results"][index]["parent_platforms"],
+          "stores": response.data["results"][index]["stores"],
+          "genres": response.data["results"][index]["genres"],
+          "screenshots": response.data["results"][index]["short_screenshots"],
+        };
+      });
     });
-  });
+  } on DioError {
+    return Future.delayed(Duration(seconds: 1), () async {
+      return new List<Map>();
+    });
+  } on DioErrorType {
+    return Future.delayed(Duration(seconds: 1), () async {
+      return new List<Map>();
+    });
+  }
 }
 
 Future<Map> getGame({String slug}) async {
@@ -47,7 +68,7 @@ class Game {
   final stores;
   final List genres;
   final List screenshots;
-  
+
   Game({
     this.name,
     this.slug,
@@ -117,9 +138,11 @@ class Games {
     _isLoading = true;
 
     return _indexGames(pagination).then((gamesData) {
+      print(gamesData.length);
       _isLoading = false;
       _data.addAll(gamesData);
-      hasMore = pagination <= 3;
+      hasMore = pagination <= 3 && gamesData.length >= paginationSize;
+      // hasMore = pagination <= 3;
       _controller.add(_data);
     });
   }

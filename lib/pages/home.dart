@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
         );
       }
     });
+
     super.initState();
   }
 
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Popular games for you",
+          "Last released games",
           style: header1Style,
         ),
         actions: <Widget>[
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
         bottom: AppBar(
-          title: const Text("Based on player ratings and release date"),
+          title: const Text("Released in last 30 days"),
           backgroundColor: Colors.black,
         ),
         backgroundColor: Colors.black,
@@ -73,6 +74,7 @@ class _HomePageState extends State<HomePage> {
               separatorBuilder: (context, index) => Divider(),
               itemCount: _snapshot.data.length + 1,
               itemBuilder: (BuildContext _context, int index) {
+                print(games.hasMore);
                 if (index < _snapshot.data.length) {
                   return GameCard(game: _snapshot.data[index]);
                 } else if (games.hasMore) {

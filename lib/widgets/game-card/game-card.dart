@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/pages/game-details.dart';
@@ -89,6 +88,8 @@ class _GameCardState extends State<GameCard> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
+                  Container(),
+
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,10 +138,6 @@ class _GameCardState extends State<GameCard> {
                         },
                       )
                     ],
-                  ),
-
-                  GameCardVideo(
-                    url: widget.game.clip["clip"],
                   ),
 
                   GestureDetector(

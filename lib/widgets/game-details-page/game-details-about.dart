@@ -30,17 +30,17 @@ class _GameDetailsAboultState extends State<GameDetailsAboult> {
             child: Text("About", style: header2Style, textAlign: TextAlign.left),
           ),
 
-          Container(
-            margin: EdgeInsets.only(top: 5.0),
-            width: double.infinity,
-            child: RichText(
-              softWrap: true,
-              overflow: TextOverflow.clip,
-              text: TextSpan(
-                text: trim ? widget.about.substring(0, 350) + "... " : widget.about,
-              ) 
-            ),
-          ),
+          // Container(
+          //   margin: EdgeInsets.only(top: 5.0),
+          //   width: double.infinity,
+          //   child: RichText(
+          //     softWrap: true,
+          //     overflow: TextOverflow.clip,
+          //     text: TextSpan(
+          //       text: trim ? widget.about.substring(0, 350) + "... " : widget.about,
+          //     )
+          //   ),
+          // ),
 
           MaterialButton(
             child: Row(
