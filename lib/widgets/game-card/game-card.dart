@@ -4,7 +4,6 @@ import 'package:video_games_list/pages/game-details.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/utils/dates.dart';
 import 'package:video_games_list/widgets/game-card/game-card-title.dart';
-import 'package:video_games_list/widgets/game-card/game-card-video.dart';
 
 class GameCard extends StatefulWidget {
   final Game game;
@@ -17,7 +16,7 @@ class GameCard extends StatefulWidget {
 
 class _GameCardState extends State<GameCard> {
   final double cardHeight = 350.0;
-  
+
   int state = 0;
 
   @override
@@ -75,7 +74,7 @@ class _GameCardState extends State<GameCard> {
             ],
           ),
 
-          state == 1 
+          state == 1
             ? Container(
               height: state == 1 ? cardHeight : 0,
               width: double.infinity,
@@ -101,7 +100,7 @@ class _GameCardState extends State<GameCard> {
                         overflow: TextOverflow.ellipsis
                       ),
                       Text(
-                        "Released at: " + (Dates.convert(date: widget.game.released) ?? "-"), 
+                        "Released at: " + (Dates.convert(date: widget.game.released) ?? "-"),
                         style: defaultTextStyleBold
                       ),
                       Text(

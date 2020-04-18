@@ -12,7 +12,7 @@ Future<List<Map>> _indexGames(page) {
   Response response;
 
   try {
-      return Future.delayed(Duration(seconds: 1), () async {
+    return Future.delayed(Duration(seconds: 1), () async {
       try {
         response = await Dio().get(url, options: dioOptionsRawg);
       } on DioError {
@@ -53,6 +53,48 @@ Future<Map> getGame({String slug}) async {
   final Response response = await Dio().get(url, options: dioOptionsRawg);
 
   return response.data;
+}
+
+Future<List<Map>> _searchGames({String search, int page = 1}) async {
+  final int pageSize = paginationSize;
+  final String url = "https://api.rawg.io/api/games?page=$page&page_size=$pageSize&search=${Uri.encodeComponent(search)}";
+  Response response;
+
+  try {
+    return Future.delayed(Duration(seconds: 1), () async {
+      try {
+        response = await Dio().get(url, options: dioOptionsRawg);
+      } on DioError {
+        return new List<Map>();
+      } on DioErrorType {
+        return new List<Map>();
+      }
+
+      return List<Map>.generate(response.data["results"].length, (int index) {
+        return {
+          "name": response.data["results"][index]["name"],
+          "slug": response.data["results"][index]["slug"],
+          "released": response.data["results"][index]["released"],
+          "backgroundImage": response.data["results"][index]["background_image"],
+          "clip": response.data["results"][index]["clip"],
+          "website": response.data["results"][index]["website"],
+          "rating": response.data["results"][index]["rating"],
+          "parentPlatforms": response.data["results"][index]["parent_platforms"],
+          "stores": response.data["results"][index]["stores"],
+          "genres": response.data["results"][index]["genres"],
+          "screenshots": response.data["results"][index]["short_screenshots"],
+        };
+      });
+    });
+  } on DioError {
+    return Future.delayed(Duration(seconds: 1), () async {
+      return new List<Map>();
+    });
+  } on DioErrorType {
+    return Future.delayed(Duration(seconds: 1), () async {
+      return new List<Map>();
+    });
+  }
 }
 
 class Game {
@@ -124,6 +166,64 @@ class Games {
     return loadMore(clearCacheData: true);
   }
 
+  Future<void> loadMore({bool clearCacheData = false, int pagination = 1, bool isSearch = false, String search}) {
+    if (clearCacheData) {
+      _data = List<Map>();
+      hasMore = true;
+    }
+
+    if (_isLoading || !hasMore) {
+      return Future.value();
+    }
+
+    _isLoading = true;
+
+    if (isSearch) {
+      return _searchGames(page: pagination, search: search).then((gamesData) {
+        _isLoading = false;
+        _data.addAll(gamesData);
+        hasMore = pagination <= 3 && gamesData.length >= paginationSize;
+        _controller.add(_data);
+      });
+    }
+
+    return _indexGames(pagination).then((gamesData) {
+      _isLoading = false;
+      _data.addAll(gamesData);
+      hasMore = pagination <= 3 && gamesData.length >= paginationSize;
+      _controller.add(_data);
+    });
+  }
+}
+
+class SearchGames {
+  Stream<List<Game>> stream;
+  bool hasMore;
+  StreamController<List<Map>> _controller;
+  bool _isLoading;
+  List<Map> _data;
+  String search;
+
+  SearchGames({String query = ""}) {
+    _data = List<Map>();
+    _controller = StreamController<List<Map>>.broadcast();
+    _isLoading = false;
+    stream = _controller.stream.map((List<Map> gamesData) {
+      return gamesData.map((Map gameData) {
+        return Game.fromServerMap(gameData);
+      }).toList();
+    });
+    hasMore = true;
+
+    search = query;
+
+    refresh();
+  }
+
+  Future<void> refresh() {
+    return loadMore(clearCacheData: true);
+  }
+
   Future<void> loadMore({bool clearCacheData = false, int pagination = 1}) {
     if (clearCacheData) {
       _data = List<Map>();
@@ -136,7 +236,7 @@ class Games {
 
     _isLoading = true;
 
-    return _indexGames(pagination).then((gamesData) {
+    return _searchGames(page: pagination, search: search).then((gamesData) {
       _isLoading = false;
       _data.addAll(gamesData);
       hasMore = pagination <= 3 && gamesData.length >= paginationSize;

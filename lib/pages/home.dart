@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-card/game-card.dart';
+import 'package:video_games_list/widgets/search.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -43,7 +44,9 @@ class _HomePageState extends State<HomePage> {
               Icons.search,
               color: Colors.white,
             ),
-            onPressed: null,
+            onPressed: () {
+              showSearch(context: context, delegate: Search());
+            },
           )
         ],
         bottom: AppBar(
