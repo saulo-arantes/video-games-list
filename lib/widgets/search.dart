@@ -1,13 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:video_games_list/models/games.dart';
+import 'package:video_games_list/utils/consts.dart';
 
 class Search extends SearchDelegate<String> {
-  final String searchFieldLabel = "Buscar";
+  final String searchFieldLabel = "Search games...";
   SearchGames games;
   final scrollController = ScrollController();
   final LocalStorage storage = new LocalStorage('lastSearches');
   int pagination = 1;
+
+  ThemeData appBarTheme(BuildContext context) {
+    assert(context != null);
+    final ThemeData theme = Theme.of(context);
+
+    assert(theme != null);
+
+    return theme.copyWith(
+      primaryColor: mainColor,
+      primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.white),
+      primaryColorBrightness: Brightness.dark,
+      primaryTextTheme: theme.textTheme,
+      scaffoldBackgroundColor: mainColor,
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(color: Colors.white54)
+      ),
+      textTheme: theme.textTheme.copyWith(
+        // body1: TextStyle(color: Colors.white),
+        // body2: TextStyle(color: Colors.white),
+        // button: TextStyle(color: Colors.white),
+        // caption: TextStyle(color: Colors.white),
+        // display1: TextStyle(color: Colors.white),
+        // display2: TextStyle(color: Colors.white),
+        // display3: TextStyle(color: Colors.white),
+        // display4: TextStyle(color: Colors.white),
+        // headline: TextStyle(color: Colors.white),
+        // overline: TextStyle(color: Colors.white),
+        // subhead: TextStyle(color: Colors.white),
+        // subtitle: TextStyle(color: Colors.white),
+        title: TextStyle(color: Colors.white),
+      )
+    );
+  }
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -52,9 +86,11 @@ class Search extends SearchDelegate<String> {
   Widget buildResults(BuildContext context) {
     games = new SearchGames(query: query);
     List<dynamic> recentSearches = storage.getItem("recentSearches");
+
     if (recentSearches == null) {
       recentSearches = new List<dynamic>();
     }
+
     recentSearches.add(query);
     storage.setItem("recentSearches", recentSearches);
 
@@ -72,31 +108,48 @@ class Search extends SearchDelegate<String> {
       stream: games.stream,
       builder: (BuildContext _context, AsyncSnapshot _snapshot) {
         if (!_snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.white,
-            )
+          return Container(
+            color: mainColor,
+            child: Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.transparent,
+              )
+            ),
           );
         }
 
-        return ListView.separated(
-          controller: scrollController,
-          separatorBuilder: (context, index) => Divider(),
-          itemCount: _snapshot.data.length + 1,
-          itemBuilder: (BuildContext _context, int index) {
-            if (index < _snapshot.data.length) {
-              return ListTile(
-                title: Text(_snapshot.data[index].name),
-              );
-            } else if (games.hasMore) {
-              return Padding(
-                padding: EdgeInsets.symmetric(vertical: 32.0),
-                child: Center(child: CircularProgressIndicator()),
-              );
-            }
+        return Container(
+          color: mainColor,
+          child: ListView.separated(
+            controller: scrollController,
+            separatorBuilder: (context, index) => Divider(
+              color: Colors.black38,
+            ),
+            itemCount: _snapshot.data.length + 1,
+            itemBuilder: (BuildContext _context, int index) {
+              if (index < _snapshot.data.length) {
+                return ListTile(
+                  title: Text(
+                    _snapshot.data[index].name,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  leading: Icon(
+                    Icons.gamepad,
+                    color: Colors.white,
+                  ),
+                );
+              } else if (games.hasMore) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(vertical: 32.0),
+                  child: Center(child: Container(
+                    child: CircularProgressIndicator()
+                  )),
+                );
+              }
 
-            return Container();
-          }
+              return Container(color: mainColor);
+            }
+          )
         );
       },
     );
@@ -111,23 +164,38 @@ class Search extends SearchDelegate<String> {
           var data = storage.getItem('recentSearches');
 
           if (data != null) {
-            return ListView.builder(
-              itemCount: data != null ? data.length : 0,
-              itemBuilder: (BuildContext _context, int index) {
-                return ListTile(
-                  title: Text(data[index]),
-                  onTap: () {
-                    query = data[index];
-                    showResults(context);
-                  },
-                );
-              },
+            return Container(
+              color: mainColor,
+              child: ListView.builder(
+                itemCount: data != null ? data.length : 0,
+                itemBuilder: (BuildContext _context, int index) {
+                  return ListTile(
+                    title: Text(
+                      data[index],
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    leading: Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                    onTap: () {
+                      query = data[index];
+                      showResults(context);
+                    },
+                  );
+                },
+              )
             );
           }
 
-          return Container();
+          return Container(color: mainColor);
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Center(
+            child: Container(
+              color: mainColor,
+              child: CircularProgressIndicator()
+            )
+          );
         }
       },
     );

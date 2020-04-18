@@ -7,6 +7,8 @@ final Options dioOptionsRawg = Options(headers: {
 
 final int paginationSize = 10;
 
+final Color mainColor = Colors.black87;
+
 final header1Style = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.w700,
