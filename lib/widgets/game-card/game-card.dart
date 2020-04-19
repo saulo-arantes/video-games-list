@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_games_list/models/games.dart';
-import 'package:video_games_list/pages/game-details.dart';
+import 'package:video_games_list/pages/game-details/game-details.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/utils/dates.dart';
 import 'package:video_games_list/widgets/game-card/game-card-title.dart';
@@ -128,9 +128,7 @@ class _GameCardState extends State<GameCard> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => GameDetailsPage(
-                                title: widget.game.name,
-                                slug: widget.game.slug,
-                                screenshots: widget.game.screenshots,
+                                game: widget.game
                               )
                             ),
                           );

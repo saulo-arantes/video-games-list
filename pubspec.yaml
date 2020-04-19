@@ -86,3 +86,16 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Bold.ttf
+        - asset: fonts/Roboto-Regular.ttf
+        - asset: fonts/Roboto-Bold.ttf
+    - family: Baloo Paaji 2
+      fonts:
+        - asset: fonts/BalooPaaji2-Regular.ttf
+        - asset: fonts/BalooPaaji2-Medium.ttf
+        - asset: fonts/BalooPaaji2-SemiBold.ttf
+        - asset: fonts/BalooPaaji2-Bold.ttf

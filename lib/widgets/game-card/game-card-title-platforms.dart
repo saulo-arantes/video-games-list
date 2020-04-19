@@ -20,7 +20,7 @@ class GameCardTitlePlatforms extends StatelessWidget {
 
   List<Widget> platformsWidgets() {
     return List<Widget>.generate(platforms.length, (int index) {
-      return platformsMap[platforms[index]['platform']['slug']] != null 
+      return platformsMap[platforms[index]['platform']['slug']] != null
         ? Padding(
           padding: EdgeInsets.only(
             left: index == 0 ? 0 : 5.0,

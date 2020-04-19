@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:video_games_list/models/games.dart';
-import 'package:video_games_list/pages/game-details.dart';
+import 'package:video_games_list/pages/game-details/game-details.dart';
 import 'package:video_games_list/utils/consts.dart';
 
 class Search extends SearchDelegate<String> {
@@ -131,9 +131,7 @@ class Search extends SearchDelegate<String> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => GameDetailsPage(
-                          title: _snapshot.data[index].name,
-                          slug: _snapshot.data[index].slug,
-                          screenshots: _snapshot.data[index].screenshots,
+                          game: _snapshot.data[index]
                         )
                       ),
                     );

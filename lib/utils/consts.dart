@@ -5,6 +5,18 @@ final Options dioOptionsRawg = Options(headers: {
   'User-Agent': 'VGL <https://github.com/saulo-arantes/video-games-list>'
 });
 
+double width(context) {
+  return MediaQuery.of(context).size.width;
+}
+
+double height(context) {
+  return MediaQuery.of(context).size.height;
+}
+
+double statusBarHeight(context) {
+  return MediaQuery.of(context).padding.top;
+}
+
 final int paginationSize = 10;
 
 final Color mainColor = Colors.black87;
