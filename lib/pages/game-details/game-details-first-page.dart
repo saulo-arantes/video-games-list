@@ -76,7 +76,7 @@ class _GameDetailsFirstPageState extends State<GameDetailsFirstPage> {
                             fontFamily: "Baloo Paaji 2",
                             fontSize: 26.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black
+                            color: Colors.black,
                           ),
                         ),
                       ),

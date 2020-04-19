@@ -120,11 +120,22 @@ class Search extends SearchDelegate<String> {
                 return ListTile(
                   title: Text(
                     _snapshot.data[index].name,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Baloo Paaji 2",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  leading: Icon(
-                    Icons.gamepad,
-                    color: Colors.white,
+                  leading: Container(
+                    width: width(context) * 0.2,
+                    decoration: _snapshot.data[index].backgroundImage != null ? BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(_snapshot.data[index].backgroundImage),
+                        fit: BoxFit.cover
+                      )
+                    ) : BoxDecoration(),
                   ),
                   onTap: () {
                     Navigator.push(
