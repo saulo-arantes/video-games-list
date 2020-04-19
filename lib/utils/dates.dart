@@ -18,7 +18,7 @@ class Dates {
     String date,
     String format
   }) {
-    if (date.isNotEmpty) {
+    if (date != null && date.isNotEmpty) {
       List<String> splitedDate = date.split("-");
       DateTime dateTime = new DateTime(
         int.parse(splitedDate[0]),
