@@ -126,7 +126,6 @@ class Search extends SearchDelegate<String> {
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0
                     ),
-                    textAlign: TextAlign.center,
                   ),
                   leading: Container(
                     width: width(context) * 0.2,
