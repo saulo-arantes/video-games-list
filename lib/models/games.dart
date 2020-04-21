@@ -8,7 +8,7 @@ Future<List<Map>> _indexGames(page) {
   final int pageSize = paginationSize;
   final String today = Dates.format(date: new DateTime.now());
   final String thirtyDaysPast = Dates.format(date: new DateTime.now().subtract(new Duration(days: 9)));
-  final String url = "https://api.rawg.io/api/games?dates=$thirtyDaysPast,$today&platforms=18,1,7&page=$page&page_size=$pageSize";
+  final String url = "https://api.rawg.io/api/games?dates=2019-03-10,2020-10-10&ordering=-added&page=$page&page_size=$pageSize";
   Response response;
 
   try {
