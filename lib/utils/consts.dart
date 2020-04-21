@@ -39,6 +39,18 @@ final header3Style = TextStyle(
   fontSize: 20.0
 );
 
+final gameDetailsHeaderStyle = TextStyle(
+  color: Colors.black,
+  fontSize: 28.0
+);
+
+final gameDetailsTextStyle = TextStyle(
+  fontFamily: "Baloo Paaji 2",
+  color: Colors.black,
+  fontSize: 16.0,
+  height: 1.3
+);
+
 final header3WithshadowStyle = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.w700,

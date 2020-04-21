@@ -22,7 +22,6 @@ class GameDetailsCarousel extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade800,
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Image.network(
                   screenshot["image"],

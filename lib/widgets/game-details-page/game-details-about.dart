@@ -29,11 +29,7 @@ class _GameDetailsAboultState extends State<GameDetailsAboult> {
             width: double.infinity,
             child: Text(
               "About",
-              style: TextStyle(
-                fontFamily: "Baloo Paaji 2",
-                color: Colors.black,
-                fontSize: 28.0
-              ),
+              style: gameDetailsHeaderStyle,
               textAlign: TextAlign.left
             ),
           ),
@@ -46,12 +42,7 @@ class _GameDetailsAboultState extends State<GameDetailsAboult> {
               overflow: TextOverflow.clip,
               text: TextSpan(
                 text: widget.about,
-                style: TextStyle(
-                  fontFamily: "Baloo Paaji 2",
-                  color: Colors.black,
-                  fontSize: 16.0,
-                  height: 1.3
-                )
+                style: gameDetailsTextStyle
               )
             ),
           ),

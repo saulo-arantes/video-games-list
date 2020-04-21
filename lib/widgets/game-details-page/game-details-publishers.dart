@@ -11,22 +11,15 @@ class GameDetailsPublishers extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text("Publishers", style: TextStyle(
-            fontFamily: "Baloo Paaji 2",
-            color: Colors.black,
-            fontSize: 28.0
-          )
+        Text(
+          "Publishers",
+          style: gameDetailsHeaderStyle
         ),
         Container(
           width: MediaQuery.of(context).size.width*0.4,
           child: Text(
             formatedPublishers(),
-            style: TextStyle(
-              fontFamily: "Baloo Paaji 2",
-              color: Colors.black,
-              fontSize: 16.0,
-              height: 1.3
-            ),
+            style: gameDetailsTextStyle,
             textAlign: TextAlign.center,
           ),
         )

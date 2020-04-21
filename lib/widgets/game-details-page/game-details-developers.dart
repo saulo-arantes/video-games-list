@@ -13,22 +13,13 @@ class GameDetailsDevelopers extends StatelessWidget {
       children: <Widget>[
         Text(
           "Developers",
-          style: TextStyle(
-            fontFamily: "Baloo Paaji 2",
-            color: Colors.black,
-            fontSize: 28.0
-          )
+          style: gameDetailsHeaderStyle
         ),
         Container(
           width: MediaQuery.of(context).size.width * 0.4,
           child: Text(
           formatedDevelopers(),
-          style: TextStyle(
-            fontFamily: "Baloo Paaji 2",
-            color: Colors.black,
-            fontSize: 16.0,
-            height: 1.3
-          ),
+          style: gameDetailsTextStyle,
           textAlign: TextAlign.center,
         ),
         )
