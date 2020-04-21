@@ -6,9 +6,11 @@ import 'package:video_games_list/utils/consts.dart';
 
 class Search extends SearchDelegate<String> {
   final String searchFieldLabel = "Search games...";
-  SearchGames games;
   final scrollController = ScrollController();
   final LocalStorage storage = new LocalStorage('lastSearches');
+  final GlobalKey loaderKey = new GlobalKey();
+
+  SearchGames games;
   int pagination = 1;
 
   ThemeData appBarTheme(BuildContext context) {
@@ -81,14 +83,20 @@ class Search extends SearchDelegate<String> {
     }
 
     recentSearches.add(query);
-    storage.setItem("recentSearches", recentSearches);
+
+    List<dynamic> distinctRecentSearches = recentSearches.toSet().toList().reversed.toList();
+
+    storage.setItem("recentSearches", distinctRecentSearches);
 
     scrollController.addListener(() {
-      if (scrollController.position.maxScrollExtent == scrollController.offset) {
-        pagination++;
-        games.loadMore(
-          pagination: pagination
-        );
+      if (scrollController.position.atEdge) {
+        if (scrollController.position.pixels != 0) {
+          pagination++;
+          print(pagination);
+          games.loadMore(
+            pagination: pagination
+          );
+        }
       }
     });
     games.search = query;
@@ -137,6 +145,7 @@ class Search extends SearchDelegate<String> {
                     ) : BoxDecoration(),
                   ),
                   onTap: () {
+                    close(context, query);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -150,9 +159,12 @@ class Search extends SearchDelegate<String> {
               } else if (games.hasMore) {
                 return Padding(
                   padding: EdgeInsets.symmetric(vertical: 32.0),
-                  child: Center(child: Container(
-                    child: CircularProgressIndicator()
-                  )),
+                  child: Center(
+                    key: loaderKey,
+                    child: Container(
+                      child: CircularProgressIndicator()
+                    )
+                  ),
                 );
               }
 
@@ -199,11 +211,10 @@ class Search extends SearchDelegate<String> {
 
           return Container(color: mainColor);
         } else {
-          return Center(
-            child: Container(
-              color: mainColor,
-              child: CircularProgressIndicator()
-            )
+          return Container(
+            width: width(context),
+            height: height(context),
+            color: mainColor
           );
         }
       },
