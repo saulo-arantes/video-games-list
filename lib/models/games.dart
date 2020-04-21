@@ -58,6 +58,7 @@ Future<Map> getGame({String slug}) async {
 Future<List<Map>> _searchGames({String search, int page = 1}) async {
   final int pageSize = paginationSize;
   final String url = "https://api.rawg.io/api/games?page=$page&page_size=$pageSize&search=${Uri.encodeComponent(search)}";
+  print(url);
   Response response;
 
   try {

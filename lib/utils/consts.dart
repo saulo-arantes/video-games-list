@@ -28,7 +28,7 @@ final header1Style = TextStyle(
 );
 
 final header2Style = TextStyle(
-  color: Colors.white,
+  color: Colors.black,
   fontWeight: FontWeight.w700,
   fontSize: 22.0
 );

@@ -27,7 +27,15 @@ class _GameDetailsAboultState extends State<GameDetailsAboult> {
         children: <Widget>[
           Container(
             width: double.infinity,
-            child: Text("About", style: header2Style, textAlign: TextAlign.left),
+            child: Text(
+              "About",
+              style: TextStyle(
+                fontFamily: "Baloo Paaji 2",
+                color: Colors.black,
+                fontSize: 28.0
+              ),
+              textAlign: TextAlign.left
+            ),
           ),
 
           Container(
@@ -37,32 +45,16 @@ class _GameDetailsAboultState extends State<GameDetailsAboult> {
               softWrap: true,
               overflow: TextOverflow.clip,
               text: TextSpan(
-                text: trim && widget.about.length > 350 ? widget.about.substring(0, 350) + "... " : widget.about,
+                text: widget.about,
+                style: TextStyle(
+                  fontFamily: "Baloo Paaji 2",
+                  color: Colors.black,
+                  fontSize: 16.0,
+                  height: 1.3
+                )
               )
             ),
           ),
-
-          widget.about.length > 350 ? MaterialButton(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(
-                  trim ? Icons.expand_more : Icons.expand_less,
-                  color: Colors.white,
-                ),
-                Text(
-                  trim ? "Show more" : "Show less",
-                  style: defaultTextStyleBold,
-                )
-              ],
-            ),
-            onPressed: () {
-              setState(() {
-                trim = !trim;
-              });
-            },
-          ) : Container(height: 25.0)
         ],
       ),
     );

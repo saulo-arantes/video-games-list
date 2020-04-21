@@ -11,7 +11,14 @@ class GameDetailsMetacritic extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text("Metascore", style: header3Style),
+        Text(
+          "Metascore",
+          style: TextStyle(
+            fontFamily: "Baloo Paaji 2",
+            color: Colors.black,
+            fontSize: 28.0
+          )
+        ),
         metacritic != null
         ? Container(
             width: MediaQuery.of(context).size.width * 0.4,
@@ -27,7 +34,16 @@ class GameDetailsMetacritic extends StatelessWidget {
           )
         : Container(
             width: MediaQuery.of(context).size.width * 0.4,
-            child: Text("-", style: defaultTextStyle, textAlign: TextAlign.center),
+            child: Text(
+              "-",
+              style: TextStyle(
+                fontFamily: "Baloo Paaji 2",
+                color: Colors.black,
+                fontSize: 16.0,
+                height: 1.3
+              ),
+              textAlign: TextAlign.center
+            ),
           )
       ],
     );

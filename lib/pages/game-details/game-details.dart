@@ -5,6 +5,12 @@ import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/utils/dates.dart';
 import 'package:video_games_list/widgets/game-card/game-card-title-platforms.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-about.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-carousel.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-developers.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-genres.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-metacritic.dart';
+import 'package:video_games_list/widgets/game-details-page/game-details-publishers.dart';
 
 class GameDetailsPage extends StatefulWidget {
   final Game game;
@@ -52,7 +58,8 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                   width: width(context),
                   padding: EdgeInsets.only(
                     right: width(context) * 0.1,
-                    left: 15.0
+                    left: 15.0,
+                    top: 15.0
                   ),
                   margin: EdgeInsets.only(
                     left: width(context) * 0.1,
@@ -64,7 +71,7 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
-                          Container(
+                          Expanded(
                             child: Text(
                               widget.game.name,
                               style: TextStyle(
@@ -72,6 +79,7 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                                 fontSize: 26.0,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
+                                height: 1.2
                               ),
                             ),
                           )
@@ -87,21 +95,40 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                         )
                       ),
 
-                      Container(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Text(
-                              Dates.convert(date: widget.game.released),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: <Widget>[
+                                Text(
+                                  Dates.convert(date: widget.game.released),
+                                  style: TextStyle(
+                                    fontFamily: "Baloo Paaji 2",
+                                    fontSize: 14.0,
+                                    color: Colors.black
+                                  ),
+                                )
+                              ],
+                            )
+                          ),
+
+                          FlatButton(
+                            child: Text(
+                              "See more...",
                               style: TextStyle(
                                 fontFamily: "Baloo Paaji 2",
                                 fontSize: 14.0,
-                                // fontWeight: FontWeight.bold,
                                 color: Colors.black
                               ),
-                            )
-                          ],
-                        )
+                            ),
+                            onPressed: () {
+                              _showModalWithMoreInfo();
+                            },
+                          )
+                        ],
                       )
                     ],
                   ),
@@ -139,5 +166,61 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
         },
       )
     ];
+  }
+
+  void _showModalWithMoreInfo() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        height: height(context) * 0.8,
+        child: FutureBuilder(
+          future: getGame(slug: widget.game.slug),
+          builder: (BuildContext _context, AsyncSnapshot _snapshot) {
+            if (_snapshot.hasData) {
+              final Map game = _snapshot.data;
+
+              return Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      GameDetailsAboult(about: game["description_raw"]),
+
+                      SizedBox(height: 15.0),
+
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          GameDetailsDevelopers(developers: game["developers"]),
+                          GameDetailsPublishers(publishers: game["publishers"])
+                        ],
+                      ),
+
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          GameDetailsGenres(genres: game["genres"]),
+                          GameDetailsMetacritic(metacritic: game["metacritic"])
+                        ],
+                      ),
+
+                      GameDetailsCarousel(screenshots: widget.game.screenshots),
+
+                      SizedBox(height: 15.0)
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            return Center(child: CircularProgressIndicator());
+          },
+        )
+      )
+    );
   }
 }
