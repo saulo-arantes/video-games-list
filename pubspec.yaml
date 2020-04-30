@@ -27,6 +27,7 @@ dependencies:
   intl: ^0.15.8
   video_player: ^0.10.7
   localstorage: ^3.0.0
+  flutter_image_compress: ^0.6.5+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

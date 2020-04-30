@@ -25,6 +25,23 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: Colors.red,
+            ),
+            onPressed: () {
+              setState(() {
+                isFavorite = !isFavorite;
+              });
+            },
+          )
+        ],
+      ),
       body: Hero(
         tag: "gamedetails",
         child: Stack(
@@ -42,18 +59,7 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: statusBarHeight(context)
-                      ),
-                      color: Colors.black26,
-                      width: width(context),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        // children: actionButtons()
-                      )
-                    ),
+                    Container(),
 
                     Container(
                       width: width(context),

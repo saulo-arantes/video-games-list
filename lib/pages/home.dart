@@ -5,6 +5,7 @@ import 'package:video_games_list/models/games.dart';
 import 'package:video_games_list/utils/consts.dart';
 import 'package:video_games_list/widgets/game-card/game-card.dart';
 import 'package:video_games_list/widgets/home/featured-game.dart';
+import 'package:video_games_list/widgets/search.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -38,6 +39,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.white),
+            onPressed: () {
+              showSearch(context: context, delegate: Search());
+            },
+          )
+        ],
+      ),
+      drawer: Drawer(),
       backgroundColor: mainColor,
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -57,8 +70,8 @@ class _HomePageState extends State<HomePage> {
 
                   if (featuredGame == null) {
                     final Random _random = new Random();
-                    featuredGame = gamesData[_random.nextInt(gamesData.length)];
 
+                    featuredGame = gamesData[_random.nextInt(gamesData.length)];
                     gamesData.removeWhere((item) => item.slug == featuredGame.slug);
                   }
 
@@ -76,11 +89,11 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             "More games for you",
                             style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 28.0,
-                            fontWeight: FontWeight.bold,
-                            height: 1.2
-                          )
+                              color: Colors.white,
+                              fontSize: 28.0,
+                              fontWeight: FontWeight.bold,
+                              height: 1.2
+                            )
                           ),
                         ),
 
@@ -105,7 +118,9 @@ class _HomePageState extends State<HomePage> {
                                     child: MaterialButton(
                                       child: Text('Search for more games', style: defaultTextStyle,),
                                       color: Colors.grey.shade800,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        showSearch(context: context, delegate: Search());
+                                      },
                                     )
                                   ),
                                 );

@@ -48,7 +48,11 @@ class _GameCardTitleState extends State<GameCardTitle> {
                     GestureDetector(
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.7,
-                        child: Text(widget.game.name, style: header3WithshadowStyle, overflow: TextOverflow.ellipsis),
+                        child: Text(
+                          widget.game.name,
+                          style: header3WithshadowStyle,
+                          // overflow: TextOverflow.ellipsis
+                        ),
                       ),
                       onTap: () async {},
                     ),

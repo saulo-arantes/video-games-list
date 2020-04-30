@@ -54,7 +54,8 @@ final gameDetailsTextStyle = TextStyle(
 final header3WithshadowStyle = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.w700,
-  fontSize: 20.0,
+  fontSize: 24.0,
+  height: 1.3,
   shadows: <Shadow>[
     Shadow(
       blurRadius: 10.0,

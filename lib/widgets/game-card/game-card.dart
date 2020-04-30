@@ -32,12 +32,15 @@ class _GameCardState extends State<GameCard> {
         );
       },
       child: Container(
-        height: 350.0,
+        height: cardHeight,
         width: double.infinity,
         margin: gameCardMargin,
         decoration: BoxDecoration(
           color: Colors.grey.shade800,
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          border: Border.all(
+            color: Colors.transparent
+          ),
           image: DecorationImage(
             image: NetworkImage(widget.game.backgroundImage),
             fit: BoxFit.cover
